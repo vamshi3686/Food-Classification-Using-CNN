@@ -1,0 +1,281 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Food Vision AI</title>
+
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+
+<!-- BACKGROUND BLUR -->
+<div class="bg-blur blur1"></div>
+<div class="bg-blur blur2"></div>
+
+<div class="main-container">
+
+    <!-- LEFT PROFILE PANEL -->
+    <div class="left-panel glass-card">
+
+        <div class="profile-image-box">
+            <img src="{{ url_for('static', filename='image.jpg') }}" alt="Profile Image">
+        </div>
+
+        <h2>Vamshi</h2>
+
+        <p class="profile-text">
+            AI Engineer & Deep Learning Developer specializing in
+            Computer Vision, OpenCV, TensorFlow and Intelligent Food
+            Classification Systems.
+        </p>
+
+        <!-- FOOD DETAILS -->
+        {% if nutrition %}
+        <div class="nutrition-box">
+
+            <h3>{{ prediction }} Details</h3>
+
+            <div class="nutrition-item">
+                <span>Calories</span>
+                <strong>{{ nutrition.calories }} kcal</strong>
+            </div>
+
+            <div class="nutrition-item">
+                <span>Protein</span>
+                <strong>{{ nutrition.protein }} g</strong>
+            </div>
+
+            <div class="nutrition-item">
+                <span>Fat</span>
+                <strong>{{ nutrition.fat }} g</strong>
+            </div>
+
+            <div class="nutrition-item">
+                <span>Carbohydrates</span>
+                <strong>{{ nutrition.carbohydrates }} g</strong>
+            </div>
+
+            <div class="nutrition-item">
+                <span>Fiber</span>
+                <strong>{{ nutrition.fiber }} g</strong>
+            </div>
+
+        </div>
+        {% endif %}
+
+        <!-- SKILLS -->
+        <div class="skills">
+            <span>Deep Learning</span>
+            <span>OpenCV</span>
+            <span>TensorFlow</span>
+            <span>Computer Vision</span>
+            <span>AI Engineer</span>
+            <span>Flask</span>
+        </div>
+
+    </div>
+
+
+    <!-- CENTER PANEL -->
+    <div class="center-panel">
+
+        <div class="hero-section glass-card">
+
+            <div class="hero-top">
+
+                <div>
+
+                    <span class="top-tag">
+                        ViharaTech × Skill Union
+                    </span>
+
+                    <h1>Food Vision AI</h1>
+
+                    <p>
+                        Upload food image and classify using deep learning models
+                    </p>
+
+                </div>
+
+                <div class="class-box">
+                    <span>Total Classes</span>
+                    <h2>{{ classes|length }}</h2>
+                </div>
+
+            </div>
+
+            <!-- FORM -->
+            <form action="/predict" method="POST" enctype="multipart/form-data">
+
+                <!-- FILE UPLOAD -->
+                <div class="upload-box">
+                    <input type="file" name="image" required>
+                </div>
+
+                <!-- MODEL SELECTION -->
+                <div class="model-grid">
+
+                    <label class="model-card">
+                        <input type="radio" name="model" value="cnn" required>
+
+                        <div class="card-content">
+                            <h3>Custom CNN</h3>
+                            <p>Custom trained convolution model</p>
+                        </div>
+                    </label>
+
+                    <label class="model-card">
+                        <input type="radio" name="model" value="vgg">
+
+                        <div class="card-content">
+                            <h3>VGG16</h3>
+                            <p>Transfer learning based VGG16</p>
+                        </div>
+                    </label>
+
+                    <label class="model-card">
+                        <input type="radio" name="model" value="resnet">
+
+                        <div class="card-content">
+                            <h3>ResNet</h3>
+                            <p>Residual neural network architecture</p>
+                        </div>
+                    </label>
+
+                </div>
+
+                <!-- BUTTON -->
+                <div class="button-box">
+                    <button type="submit">Predict Food</button>
+                </div>
+
+            </form>
+
+        </div>
+
+
+        <!-- RESULT SECTION -->
+        {% if prediction %}
+
+        <div class="result-section glass-card">
+
+            <!-- IMAGE PREVIEW -->
+            <div class="result-image">
+                <img src="{{ url_for('static', filename=image_path) }}" alt="Uploaded Food">
+            </div>
+
+            <!-- RESULT DETAILS -->
+            <div class="result-details">
+
+                <span class="result-badge">
+                    {{ model_used }} MODEL
+                </span>
+
+                <h2>{{ prediction }}</h2>
+
+                <div class="confidence-box">
+
+                    <div class="confidence-header">
+                        <span>Confidence</span>
+                        <span>{{ confidence }}%</span>
+                    </div>
+
+                    <div class="progress-bar">
+                        <div class="progress-fill" style="width: {{ confidence }}%;"></div>
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+        {% endif %}
+
+    </div>
+
+
+    <!-- RIGHT PANEL -->
+    <div class="right-panel glass-card">
+
+        {% if prediction %}
+
+        <h2>Model Metrics</h2>
+
+        <div class="metric-card">
+            <span>Accuracy</span>
+            <h3>{{ accuracy }}</h3>
+        </div>
+
+        <div class="metric-card">
+            <span>Precision</span>
+            <h3>{{ precision }}</h3>
+        </div>
+
+        <div class="metric-card">
+            <span>Recall</span>
+            <h3>{{ recall }}</h3>
+        </div>
+
+        <div class="metric-card">
+            <span>F1 Score</span>
+            <h3>{{ f1_score }}</h3>
+        </div>
+
+        {% else %}
+
+        <h2>Food Classes</h2>
+
+        <div class="classes-list">
+
+            <span>Fries</span>
+            <span>Ice Cream</span>
+            <span>Fried Rice</span>
+            <span>Apple Pie</span>
+            <span>Sushi</span>
+            <span>Momos</span>
+            <span>Dal Makhani</span>
+            <span>Donut</span>
+            <span>Chicken Curry</span>
+            <span>Omelette</span>
+            <span>Taquito</span>
+            <span>Dhokla</span>
+            <span>Masala Dosa</span>
+            <span>Butter Naan</span>
+            <span>Jalebi</span>
+            <span>Pakode</span>
+            <span>Hot Dog</span>
+            <span>Cheesecake</span>
+            <span>Chai</span>
+            <span>Kaathi Rolls</span>
+            <span>Samosa</span>
+            <span>Taco</span>
+            <span>Crispy Chicken</span>
+            <span>Chole Bhature</span>
+            <span>Kulfi</span>
+            <span>Burger</span>
+            <span>Paani Puri</span>
+            <span>Pav Bhaji</span>
+            <span>Sandwich</span>
+            <span>Kadai Paneer</span>
+            <span>Chapati</span>
+            <span>Baked Potato</span>
+            <span>Idli</span>
+            <span>Pizza</span>
+
+        </div>
+
+        {% endif %}
+
+    </div>
+
+</div>
+
+</body>
+</html>
