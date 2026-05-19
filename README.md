@@ -148,13 +148,6 @@ After downloading:
 ```bash
 python app.py
 ```
-
-or
-
-```bash
-python main.py
-```
-
 ---
 
 # 🌐 Open in Browser
