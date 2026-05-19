@@ -1,35 +1,37 @@
-````md
-# 🍔 Food Classification & Nutrition Analysis System
+# 🍔 Food Vision AI
 
-An AI-powered web application that classifies food images using Deep Learning models and displays nutritional information instantly.
+Food Vision AI is a Deep Learning-powered food classification and nutrition analysis system that predicts food categories from uploaded images using advanced CNN architectures.  
+The application provides real-time food prediction, confidence score visualization, and nutrition details through an interactive modern web interface.
+
+This project was built to explore practical applications of:
+- Computer Vision
+- Transfer Learning
+- Deep Learning Model Deployment
+- Flask Backend Development
+- Redis Integration
 
 ---
 
 ## 🚀 Features
 
-✅ Food Image Classification  
-✅ Nutrition Information Display  
-✅ Deep Learning Models (VGG16, VGG19, ResNet50)  
-✅ Fast Data Retrieval using Redis  
-✅ Prediction History/Profile Section  
-✅ Responsive Web Interface  
-✅ Transfer Learning-based CNN Architecture  
+- Food image classification using AI
+- Nutrition information display after prediction
+- Deep Learning models:
+  - Custom CNN
+  - VGG16
+  - ResNet50
+- Real-time prediction confidence
+- Redis-powered fast nutrition retrieval
+- Modern responsive UI
+- Upload and analyze food images instantly
 
 ---
 
-## 🧠 Models Used
-
-- VGG16
-- VGG19
-- ResNet50
-
----
-
-## 🛠️ Tech Stack
+## 🧠 Technologies Used
 
 ### Frontend
-- HTML
-- CSS
+- HTML5
+- CSS3
 - JavaScript
 
 ### Backend
@@ -39,49 +41,20 @@ An AI-powered web application that classifies food images using Deep Learning mo
 ### Deep Learning
 - TensorFlow
 - Keras
+- OpenCV
 
 ### Database
 - Redis
 
 ---
 
-# 📂 Project Structure
+# 📦 Installation
+
+## 1️⃣ Clone Repository
 
 ```bash
-food-classifier/
-│
-├── static/
-│   ├── css/
-│   ├── js/
-│   └── uploads/
-│
-├── templates/
-│   └── index.html
-│
-├── models/
-│   └── trained_model.h5
-│
-├── nutrition_data/
-│   └── food_nutrition.json
-│
-├── app.py
-├── main.py
-├── requirements.txt
-└── README.md
-````
-
----
-
-# ⚙️ Installation & Setup
-
-## 1️⃣ Clone the Repository
-
-```bash
-git clone https://github.com/your-username/food-classifier.git
-```
-
-```bash
-cd food-classifier
+git clone https://github.com/your-username/food-vision-ai.git
+cd food-vision-ai
 ```
 
 ---
@@ -94,7 +67,7 @@ cd food-classifier
 python -m venv .venv
 ```
 
-Activate environment:
+Activate:
 
 ```bash
 .venv\Scripts\activate
@@ -104,11 +77,6 @@ Activate environment:
 
 ```bash
 python3 -m venv .venv
-```
-
-Activate environment:
-
-```bash
 source .venv/bin/activate
 ```
 
@@ -127,10 +95,9 @@ pip install -r requirements.txt
 ## Install Redis
 
 ### Windows
+Download Redis:
 
-Download Redis from:
-
-👉 [https://github.com/microsoftarchive/redis/releases](https://github.com/microsoftarchive/redis/releases)
+https://github.com/microsoftarchive/redis/releases
 
 ### Linux
 
@@ -162,7 +129,21 @@ sudo service redis-server start
 
 ---
 
-# ▶️ Run the Application
+# 🤖 Download ResNet50 Model
+
+Due to GitHub file size limitations, the trained ResNet50 model is hosted on Google Drive.
+
+## Download Model
+
+👉 https://drive.google.com/file/d/12eCgqD2To5Kq2XRIDGBb3OsNbA-MkWSd/view?usp=drive_link
+
+After downloading:
+- Place the model file inside the project directory
+- Update the model path in the Flask application if required
+
+---
+
+# ▶️ Run Application
 
 ```bash
 python app.py
@@ -181,75 +162,67 @@ python main.py
 ```bash
 http://127.0.0.1:5000
 ```
-
----
-
-# 📸 How to Use
-
-1. Upload a food image
-2. Model predicts the food category
-3. Nutrition details are displayed
-4. Prediction history/profile updates automatically
-
----
-
-# 📊 Example Output
-
-| Food Image | Prediction | Calories |
-| ---------- | ---------- | -------- |
-| Pizza      | Pizza      | 266 kcal |
-| Burger     | Burger     | 295 kcal |
-| Apple      | Apple      | 52 kcal  |
-
----
-
-# 🎯 Future Improvements
-
-* Mobile App Integration
-* Real-time Camera Detection
-* Multi-food Detection
-* Voice Assistant Integration
-* Calorie Tracking Dashboard
-
----
-
-# 🤝 Contributing
-
-Contributions are welcome!
-
-Fork the repository and create a pull request.
-
----
-
-# 📜 License
-
-This project is licensed under the MIT License.
-
----
-
-# 👨‍💻 Author
-
-**Vamshi Krishna**
-
-📧 Connect with me on LinkedIn
-🔗 GitHub: [https://github.com/your-username](https://github.com/your-username)
-
----
-
-# ⭐ Support
-
-If you like this project, give it a ⭐ on GitHub!
-
-```
-```
 # 📸 Application Preview
 
 ## 🔹 Before Prediction
 
-![Before Prediction](sandbox:/mnt/data/image.png)
+<img width="100%" alt="Before Prediction" src="before.png">
+
+The dashboard before prediction allows users to:
+- Upload food images
+- Select Deep Learning models
+- View supported food classes
+- Access model information and interface
 
 ---
 
 ## 🔹 After Prediction
 
-![After Prediction](sandbox:/mnt/data/image.png)
+<img width="100%" alt="After Prediction" src="after.png">
+
+After prediction, the system displays:
+- Predicted food category
+- Confidence score
+- Nutrition details
+- Food preview image
+- Model metrics and analytics
+
+---
+---
+
+# 📸 How It Works
+
+1. Upload a food image  
+2. AI model processes the image  
+3. Food category gets predicted  
+4. Nutrition details are fetched from Redis  
+5. Confidence score and result are displayed on the dashboard  
+
+---
+
+# 🎯 Future Improvements
+
+- Real-time webcam prediction
+- Mobile application support
+- Multi-food detection
+- Calorie tracking system
+- Voice assistant integration
+- Cloud deployment
+
+---
+
+# 👨‍💻 Developer
+
+**Vamshi Krishna**
+
+AI Engineer & Deep Learning Developer specializing in:
+- Computer Vision
+- OpenCV
+- TensorFlow
+- Intelligent AI Systems
+
+---
+
+# ⭐ Support
+
+If you found this project useful, consider giving it a ⭐ on GitHub.
